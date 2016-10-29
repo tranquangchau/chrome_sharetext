@@ -1,3 +1,6 @@
+<html>
+<meta charset="UTF-8">
+
 <?php 
 if (!isset($_SESSION)) {
 	session_start();
