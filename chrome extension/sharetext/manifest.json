@@ -1,0 +1,21 @@
+{
+    "manifest_version": 2,
+
+    "name": "Share text",
+    "description": "Share text",
+    "version": "1.0.1",
+    "icons": {
+        "16": "2016-10-29_175401.png",
+        "48": "2016-10-29_175401.png",
+        "128": "2016-10-29_175401.png"
+    },
+
+    "permissions": [
+        "activeTab",
+        "http://*.localhost/"
+    ],
+    "browser_action": {
+        "default_icon": "2016-10-29_175401.png",
+        "default_popup": "popup.html"
+    }
+}
