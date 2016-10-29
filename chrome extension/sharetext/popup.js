@@ -4,5 +4,6 @@ chrome.tabs.executeScript( {
     //alert(selection);
   var query = encodeURIComponent(selection[0] || 'test')
   document.querySelector('iframe').src = 
+    //'http://php-chautran.rhcloud.com/sharetext/'
     'http://localhost/chrome/sharetext/'
 });
