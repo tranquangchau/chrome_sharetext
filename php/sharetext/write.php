@@ -1,4 +1,5 @@
 <?php
+include_once '_setting.php';
 //echo 'write list file<br>';
 $fileList = array();
 //$files = glob('home/dir/*.txt');
@@ -11,8 +12,7 @@ $fileList = array_reverse($fileList, TRUE);
 
 
 
-$url_request="http://localhost/chrome/sharetext/data/";
-
+$url_request=SITE_URL;
 $url=$url_request;
 //echo $url;die;
 $stringlist_file="";

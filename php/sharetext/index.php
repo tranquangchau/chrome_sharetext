@@ -2,6 +2,8 @@
 <meta charset="UTF-8">
 
 <?php 
+include_once '_setting.php';
+
 if (!isset($_SESSION)) {
 	session_start();
 }

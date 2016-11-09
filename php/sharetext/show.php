@@ -19,6 +19,7 @@ pre{white-space: pre-wrap;font-family: serif;}
 <body>
 
 <?php
+include_once '_setting.php';
 include_once '_back.php';
 
 $filename='';
@@ -33,15 +34,24 @@ if (isset($_GET['filename'])){
     fclose($file);
 	
 }else{
-	$url_request = "http://" . $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];	
-	$handle = file_get_contents("list_data.txt");
-	$array = explode(",",$handle);
-	//var_dump(($_SERVER));
-	for($i=1;$i<=sizeof($array);$i++){
-		$name_remove=str_replace('.txt','',$array[$i-1]);
-		$name_remove=str_replace('data/','',$name_remove);
-		echo '<a href="'.$url_request.'?filename='.$name_remove.'">'.$array[$i-1].'</a><br/>';
+	if(isset($_REQUEST['user'])){
+		if($_REQUEST['user']=='chau'){
+			$url_request = "http://" . $_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];	
+			$handle = file_get_contents("list_data.txt");
+			$array = explode(",",$handle);
+			//var_dump(($_SERVER));
+			for($i=1;$i<=sizeof($array);$i++){
+				$name_remove=str_replace('.txt','',$array[$i-1]);
+				$name_remove=str_replace('data/','',$name_remove);
+				echo '<a href="'.$url_request.'&filename='.$name_remove.'">'.$array[$i-1].'</a><br/>';
+			}
+		}else{
+			include_once 'recheck_use.php';
+		}		
+	}else{
+		include_once 'recheck_use.php';
 	}
+	
 }
 ?>
 	</body>

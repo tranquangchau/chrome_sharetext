@@ -3,10 +3,20 @@
 Class User{
     private $username = '';
     private $password = '';
+	
+	private $check_uname="";
+	private $check_pass="";
+	
 
     function __construct() {
-        
-    }
+		if($_SERVER['SERVER_NAME']=='localhost'){
+			$this->check_uname="u1";
+			$this->check_pass="p2";
+		}else{
+			$this->check_uname="u2";
+			$this->check_pass="p1";
+		}
+    }	
 
     public function set_ok($username, $password) {
         if ($this->_check_info($username, $password)) {
@@ -33,6 +43,14 @@ Class User{
         }
         return true;
     }
+	public function check_user(){
+		if($username==$this->check_uname){
+			return true;
+		}else{
+			return false;
+		}
+		
+	}
 
     /**
      * 
@@ -43,11 +61,11 @@ Class User{
     private function _check_info($username, $password) {
         if (!$username || !$password) {
             return false;
+        }		
+        if ($username==$this->check_uname && $password==$this->check_pass) {
+            return true;
         }
-        if ($username!="chau" && $password!="123") {
-            return false;
-        }
-        return true;
+        return false;
     }
 
     /**

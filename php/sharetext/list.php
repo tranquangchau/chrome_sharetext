@@ -6,8 +6,7 @@ $handle = file_get_contents("list_data.txt");
 $array = explode(",",$handle);
 //var_dump($array);
    
-
-	$url_request="http://localhost/chrome/sharetext/data/";
+$url_request=SITE_URL; 
 $url=$url_request;
 //echo $url;die;
 foreach ($array as $key => $value) {
