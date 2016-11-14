@@ -9,13 +9,15 @@
         "48": "2016-10-29_175401.png",
         "128": "2016-10-29_175401.png"
     },
-
-    "permissions": [
-        "activeTab",
-        "http://*.localhost/"
-    ],
     "browser_action": {
         "default_icon": "2016-10-29_175401.png",
         "default_popup": "popup.html"
-    }
+    },
+	"background" : { "scripts": ["popup.js"] },
+	"permissions" : [
+    "contextMenus",
+    "tabs",
+    "http://*/*",
+    "https://*/*"
+   ], "minimum_chrome_version" : "6.0.0.0"
 }
