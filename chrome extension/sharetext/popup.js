@@ -1,10 +1,47 @@
+/*
+var url_at;
+chrome.tabs.query({'active': true, 'lastFocusedWindow': true}, function (tabs) {
+    //var url = tabs[0].url;
+	
+    url_at = tabs[0].url;	
+	//alert(url_at);
+});
+*/
+//alert(document.location.href);
+function getCurrentUrl(callBackFuntion){
+//you are in content scripts
+    if(null == chrome.tabs || null == chrome.tabs.query){
+        callBackFuntion(document.location.href);
+    }else{
+//you are in popup
+        var queryInfo = {
+            active: true, 
+            currentWindow: true
+        };
+        chrome.tabs.query(queryInfo, function(tabs) {
+            var tab = tabs[0]; 
+			console.log(tab);
+            //callBackFuntion(tab.url);
+            callBackFuntion(tab);
+        }); 
+    }
+}
+var url_now;
+function alertUrl(url){
+    //console.log("currentUrl : " + url);
+	//alert(url);
+	url_now=url;
+}
+getCurrentUrl(alertUrl);
+
+
 chrome.tabs.executeScript( {
+	
   //code: "window.getSelection().toString();"
 }, function(selection) {
     //alert(selection);
   //var query = encodeURIComponent(selection[0] || '汉典')
-  document.querySelector('iframe').src =
-  'http://php-chautran.rhcloud.com/sharetext';
+  document.querySelector('iframe').src ='http://php.rhcloud.com/sharetext'+"?link="+url_now.url+"&title="+url_now.title;
   //'http://localhost/chrome/sharetext/';
 });
 
@@ -21,7 +58,8 @@ function getClickHandler() {
 
     // The srcUrl property is only available for image elements.
     var url = 'info.html#' + info.srcUrl;
-	var link="http://localhost/chrome/savepic/?link="+info.srcUrl;
+	//var link="http://localhost/chrome/savepic/?link="+info.srcUrl;	
+	var link="http://a.net/u/savepic?link="+info.srcUrl;
 	loadXMLDoc(link);
 	//console.log(url);
     // Create a new window to the info page.
@@ -30,6 +68,7 @@ function getClickHandler() {
 };
 function loadXMLDoc(theURL)
 {
+	alert("2");
 	if (window.XMLHttpRequest)
 	{// code for IE7+, Firefox, Chrome, Opera, Safari, SeaMonkey
 		xmlhttp=new XMLHttpRequest();
@@ -58,3 +97,4 @@ chrome.contextMenus.create({
   "contexts" : ["image"],
   "onclick" : getClickHandler()
 });
+
